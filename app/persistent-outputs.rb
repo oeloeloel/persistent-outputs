@@ -3,9 +3,19 @@ class PersistentOutputs
     # special touch
     @args.render_target(:flip)
     @args.render_target(:flop)
-    # end special touch
 
-    @flip_flop = :flop
+    @flip_flop = :flip
+
+    @output_sprite = {
+      x: 0,
+      y: 0,
+      w: 1280,
+      h: 720,
+      source_x: 0,
+      source_y: 0,
+      source_w: 1280,
+      source_h: 720
+    }
   end
 
   def tick(args)
@@ -16,24 +26,17 @@ class PersistentOutputs
       return
     end
 
-    output_sprite = {
-      x: 0,
-      y: 0,
-      w: 1280,
-      h: 720,
-      path: @flip_flop,
-      source_x: 0,
-      source_y: 0,
-      source_w: 1280,
-      source_h: 720
-    }
-
-    @args.render_target(invert(@flip_flop)).sprites << output_sprite
-    @args.outputs.sprites << output_sprite
+    # set the path of output sprite to point at the current render target
+    @output_sprite[:path] = @flip_flop
+    # add the current render target to the non-current render target
+    @args.render_target(invert(@flip_flop)).sprites << @output_sprite
+    # display the current render target
+    @args.outputs.sprites << @output_sprite
+    # change :flip to :flop or :flop to :flip
     @flip_flop = invert(@flip_flop)
   end
 
-  # inverts flip_flop from :flip to :flop or vice versa
+  # inverts flip_flop from :flip to :flop or :flop to :flip
   def invert(fl_p)
     fl_p == :flip ? :flop : :flip
   end
@@ -69,6 +72,7 @@ class PersistentOutputs
   end
 end
 
+# here be monkeys
 class GTK::Args
   def tick_persist
     @persist ||= PersistentOutputs.new(self)
