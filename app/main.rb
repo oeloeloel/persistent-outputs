@@ -18,4 +18,8 @@ def tick(args)
   # args.persist.labels << [args.inputs.mouse.x, args.inputs.mouse.y, 'DragonRuby Rocks!', rand(255), rand(255), rand(255)]
   # args.persist.lines << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, rand(255), rand(255), rand(255)]
   args.persist.borders << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, rand(255), rand(255), rand(255)]
+
+  if args.inputs.mouse.click
+    args.persist.clear
+  end
 end

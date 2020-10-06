@@ -26,22 +26,25 @@ class PersistentOutputs
       return
     end
 
+    # if cleared, set back to full size
+    @output_sprite.w = @output_sprite.w.greater(1280)
+
     # set the path of output sprite to point at the current render target
     @output_sprite[:path] = @flip_flop
     # add the current render target to the non-current render target
-    @args.render_target(invert(@flip_flop)).sprites << @output_sprite
+    @args.render_target(swap(@flip_flop)).sprites << @output_sprite
     # display the current render target
     @args.outputs.sprites << @output_sprite
-    # change :flip to :flop or :flop to :flip
-    @flip_flop = invert(@flip_flop)
+    # swap the render targets
+    @flip_flop = swap(@flip_flop)
   end
 
   def clear
-    # clear the render targets
+    @output_sprite.w = 0
   end
 
-  # inverts flip_flop from :flip to :flop or :flop to :flip
-  def invert(fl_p)
+  # swaps flip_flop from :flip to :flop or :flop to :flip
+  def swap(fl_p)
     fl_p == :flip ? :flop : :flip
   end
 
