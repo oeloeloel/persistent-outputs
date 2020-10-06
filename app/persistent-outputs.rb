@@ -36,6 +36,10 @@ class PersistentOutputs
     @flip_flop = invert(@flip_flop)
   end
 
+  def clear
+    # clear the render targets
+  end
+
   # inverts flip_flop from :flip to :flop or :flop to :flip
   def invert(fl_p)
     fl_p == :flip ? :flop : :flip
@@ -91,8 +95,6 @@ module GTK
     def tick_core
       @args.tick_persist
       __original_tick_core__
-
-      return if @args.state.tick_count <= 0
     end
   end
 end
