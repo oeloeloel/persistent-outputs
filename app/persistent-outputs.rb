@@ -7,14 +7,8 @@ class PersistentOutputs
     @flip_flop = :flip
 
     @output_sprite = {
-      x: 0,
-      y: 0,
-      w: 1280,
-      h: 720,
-      source_x: 0,
-      source_y: 0,
-      source_w: 1280,
-      source_h: 720
+      w: @args.grid.w,
+      h: @args.grid.h
     }
   end
 
@@ -27,7 +21,7 @@ class PersistentOutputs
     end
 
     # if cleared, set back to full size
-    @output_sprite.w = @output_sprite.w.greater(1280)
+    @output_sprite.w = @output_sprite.w.greater(@args.grid.w)
 
     # set the path of output sprite to point at the current render target
     @output_sprite[:path] = @flip_flop
@@ -93,11 +87,11 @@ end
 
 module GTK
   class Runtime
-    alias_method :__original_tick_core__, :tick_core unless Runtime.instance_methods.include?(:__original_tick_core__)
+    alias_method :__tick_core_without_persistent_outputs__, :tick_core unless Runtime.instance_methods.include?(:__tick_core_without_persistent_outputs__)
 
     def tick_core
       @args.tick_persist
-      __original_tick_core__
+      __tick_core_without_persistent_outputs__
     end
   end
 end

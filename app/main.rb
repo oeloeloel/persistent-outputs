@@ -1,7 +1,5 @@
 require 'app/persistent-outputs.rb'
 
-
-
 def tick(args)
   args.outputs.background_color = [63, 63, 63]
   args.outputs.debug << [10, 720, "FPS #{args.gtk.current_framerate.round}"].label
