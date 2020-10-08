@@ -21,5 +21,6 @@ To clear persistent outputs:
   
 All DragonRuby primitive types are supported. Solids do not behave as expected due to the ordering of primitives within DragonRuby. I suggest to send solids to args.persist.primitives instead. 
 
-The script uses the 'double-buffer' render target technique pioneered by @Islacrusez (on the DragonRuby Discord).
+The script uses the 'double-buffer' render target technique pioneered by Islacrusez (@Islacrusez on the DragonRuby Discord).
 The code to accomplish args.persist is adapted from original code by Amir Rajan (@amirrajan on the DragonRuby Discord).
+Valuable Ruby assistance was provided by kfischer_okarin (@kfischer_okarin on the DragonRuby Discord).

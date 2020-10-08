@@ -85,13 +85,11 @@ class GTK::Args
   end
 end
 
-module GTK
-  class Runtime
-    alias_method :__tick_core_without_persistent_outputs__, :tick_core unless Runtime.instance_methods.include?(:__tick_core_without_persistent_outputs__)
-
-    def tick_core
-      @args.tick_persist
-      __tick_core_without_persistent_outputs__
-    end
+module GTKRuntimePersistentOutputExtension
+  def tick_core
+    @args.tick_persist
+    super
   end
 end
+
+GTK::Runtime.prepend GTKRuntimePersistentOutputExtension
