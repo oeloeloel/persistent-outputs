@@ -13,7 +13,9 @@ Usage:
 Exactly the same as with normal DragonRuby primitives except using `args.persist` instead of `args.outputs`.
 
 For example:
+
   `args.persist.sprites << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, 'sprites/circle-orange.png']`
+  
   `args.persist.primitives << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, rand(255), rand(255), rand(255)].solid`
 
 To clear persistent outputs: 
