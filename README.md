@@ -16,7 +16,7 @@ For example:
   `args.persist.sprites << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, 'sprites/circle-orange.png']`
   `args.persist.primitives << [args.inputs.mouse.x, args.inputs.mouse.y, 100, 100, rand(255), rand(255), rand(255)].solid`
 
-To clear persistent outputs:
+To clear persistent outputs: 
   `args.persist.clear`
   
 All DragonRuby primitive types are supported. Solids do not behave as expected due to the ordering of primitives within DragonRuby. I suggest to send solids to `args.persist.primitives` instead. 
