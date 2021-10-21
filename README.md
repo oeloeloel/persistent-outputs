@@ -1,6 +1,8 @@
 # persistent-outputs
 Persistent Outputs for DragonRuby
 
+Note: As of version ~2.26, DragonRuby includes a `clear_before_render` method for render targets, making this code less useful.
+
 This script makes it easy to output primitives to the screen and have them stay there without the slowdown that comes from having tons of primitives around.
 
 Set up:
